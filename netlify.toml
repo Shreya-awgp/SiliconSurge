@@ -1,6 +1,10 @@
 [build]
-  command = "pnpm --filter @workspace/silicon-surge build"
+  command = "pnpm install && pnpm --filter @workspace/silicon-surge build"
   publish = "artifacts/silicon-surge/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "9"
 
 [[redirects]]
   from = "/*"
