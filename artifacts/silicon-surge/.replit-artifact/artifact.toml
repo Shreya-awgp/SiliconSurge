@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "The Silicon Surge"
+version = "1.0.0"
+id = "artifacts/silicon-surge"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23010
+
+[services.development]
+run = "pnpm --filter @workspace/silicon-surge run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/silicon-surge", "run", "build" ]
+publicDir = "artifacts/silicon-surge/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23010"
+BASE_PATH = "/"
